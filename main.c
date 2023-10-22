@@ -1,58 +1,44 @@
 /*
-ex nb 2
-donner le nombre de recurence d'une mot dans une phrase donnee
+ex nb 1:
+enlever les espaces et les blanscs en exes comme example(' ' , '\t' , '\n')
 */
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-int main() {
-    char String[1000];
-    char words[1000][100];
-    int counts[1000] = {0};
-    int numWords = 0;
+int main()
+{
+    char array[100];
+    char array2[100];
+    int j=0;
+    int spacecount = 0 ;
 
+    printf("donner une chaine \n");
+    gets(array);
 
-    printf("donner une chaine: "); // entrer le String a traiter
-    gets(String);
+    for (int i=0 ; i <= strlen(array) ;i++){
+        if (array[i]=='\n' || array[i]=='\t' || array[i]==' ')
 
-    strcat(String," error") ; // ajouter un caractere a la fini de String pour depasser un erreur
-
-    int i = 0, j = 0, k = 0;
-    while (String[i] != '\0') {   //remplir le tableau de words et compter le recurrence
-        if (String[i] == ' ')
             {
-            words[numWords][k] = '\0';
-            k = 0;
-            int found = 0;
-            for (int n = 0; n < numWords; n++)
-            {
-                if (strcmp(words[n], words[numWords]) == 0)
-                {
-                    counts[n]++;
-                    found = 1;
-                    break;
-                }
+                if (j == 0){
+
+                continue;     // verifier si c'est la premier caractere en array2
+
             }
-            if (!found)
-            {
-                if (numWords < 1000)
+            else
                 {
-                    counts[numWords] = 1;
-                    numWords++;
-                }
-            }
-        } else
+                while (spacecount == 0)
+                    {
+                        array2[j] = ' '; // ecrire une espace dans array2 si ce n'est pas la premier caractére
+                        j++;
+                        spacecount = 1 ; // incrementer la compteur d'espace
+                    }
+                 }
+        }else
         {
-            words[numWords][k] = String[i];
-            k++;
+            array2[j]=array[i]; // ecrire les caracteres qui ne sont pas des blancs dans array2
+            j ++;
+            spacecount = 0 ; // reinstaller le contuer d'espace a 0
         }
-        i++;
     }
-
-    printf("mots \t recurences \n"); // donner la liste des mots et les nombres de reccurence
-    for (int n = 0; n < numWords; n++)
-    {
-        printf("%s \t %d fois \n", words[n], counts[n]);
-    }
-    return 0;
+    printf("%s", array2);
 }
